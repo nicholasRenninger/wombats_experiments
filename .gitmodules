@@ -1,0 +1,3 @@
+[submodule "dfasat"]
+	path = dfasat
+	url = https://bitbucket.org/chrshmmmr/dfasat.git
