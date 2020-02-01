@@ -1,15 +1,43 @@
+import networkx as nx
+from scipy import stats
+from networkx.drawing.nx_pydot import to_pydot
+import graphviz as gv
+import yaml
+
+
 class PDFA(nx.MultiDiGraph):
+    """
+    This class describes a probabilistic deterministic finite automaton (pdfa).
+    """
 
     def __init__(self, states=[], edges=[]):
+        """
+        Constructs a new instance of a pdfa.
+
+        :param      states:  The states labels and properties
+        :type       states:  list of tuples with:
+                                - idx 0: node label string
+                                - idx 1: dictionary of node properties
+        :param      edges:   The edges
+        :type       edges:   Array
+        """
 
         # need to start with a fully initialized networkx digraph
         super().__init__()
 
+        # number of symbols in pdfa alphabet
         self.alphabetSize = 8
+
+        # number of states in pdfa state space
         self.numStates = 3
+
+        # representation of the empty string / symbol (lambda if automata lit.)
         self.lambdaTransitionSymbol = -1
+
+        # unique start state string label of pdfa
         self.startState = 'q1'
 
+        # when given pdfa definition in structured form
         if states:
             self.add_nodes_from(states)
 
@@ -24,9 +52,18 @@ class PDFA(nx.MultiDiGraph):
 
         else:
 
-            self.add_node('q0', final_probability=0.89, transDistribution=None)
-            self.add_node('q1', final_probability=0.00, transDistribution=None)
-            self.add_node('q2', final_probability=1.00, transDistribution=None)
+            self.add_node('q0',
+                          final_probability=0.89,
+                          transDistribution=None,
+                          isAccepting=True)
+            self.add_node('q1',
+                          final_probability=0.00,
+                          transDistribution=None,
+                          isAccepting=False)
+            self.add_node('q2',
+                          final_probability=1.00,
+                          transDistribution=None,
+                          isAccepting=True)
 
             probSad = 0.01
 
@@ -167,6 +204,21 @@ class PDFA(nx.MultiDiGraph):
 
         nodeData = self.nodes.data()
         nodeData[nodeLabel][dataKey] = data
+
+    ##
+    # @brief      reads in the simulation parameters from a YAML config file
+    #
+    # @param      configFileName  The YAML configuration file name
+    #
+    # @return     configuration data dictionary for the simulation
+    #
+    @staticmethod
+    def loadConfigData(configFileName):
+
+        with open(configFileName, 'r') as stream:
+            configData = yaml.load(stream, Loader=yaml.Loader)
+
+        return configData
 
 
 def generateSamplesFromPDFA(pdfa, numSamples):

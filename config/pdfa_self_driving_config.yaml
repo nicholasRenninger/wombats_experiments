@@ -1,0 +1,65 @@
+# define a list of node labels, where each label is a string identifier label
+# for a unique node, and the metadata properties for each node
+nodes:
+
+  'q0':
+    final_probability: 0.89
+    transDistribution: null
+    isAccepting: True
+
+  'q1':
+    final_probability: 0.00
+    transDistribution: null
+    isAccepting: True
+
+  'q2':
+    final_probability: 1.00
+    transDistribution: null
+    isAccepting: True
+
+# define the edges of the graph
+edges:
+
+  'q1':
+    - ['A', weight: 1.0]
+    - ['B', weight: 1.0]
+    - ['C', weight: 1.0]
+
+  'A':
+    - ['D', weight: 1.0]
+    - ['E', weight: 1.0]
+    - ['F', weight: 3.0]
+
+  'B':
+    - ['G', weight: 4.0]
+    - ['H', weight: 1.0]
+    - ['I', weight: 2.0]
+
+  'C':
+    - ['J', weight: 1.0]
+    - ['K', weight: 1.0]
+    - ['L', weight: 1.0]
+
+  'D':
+
+  'E':
+    - ['OMEGA', weight: 3.0]
+  
+  'F':
+
+  'G':
+    - ['OMEGA', weight: 3.0]
+
+  'H':
+
+  'I':
+    - ['OMEGA', weight: 3.0]
+
+  'J':
+  
+  'K':
+    - ['OMEGA', weight: 2.0]
+
+  'L':
+
+  'OMEGA':
