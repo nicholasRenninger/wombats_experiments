@@ -3,6 +3,7 @@ from scipy import stats
 from networkx.drawing.nx_pydot import to_pydot
 import graphviz as gv
 import yaml
+from IPython.display import display
 
 
 class PDFA(nx.MultiDiGraph):
@@ -10,88 +11,153 @@ class PDFA(nx.MultiDiGraph):
     This class describes a probabilistic deterministic finite automaton (pdfa).
     """
 
-    def __init__(self, states=[], edges=[]):
+    def __init__(self, configFileName):
         """
-        Constructs a new instance of a pdfa.
+        Constructs a new instance of a PDFA object.
 
-        :param      states:  The states labels and properties
-        :type       states:  list of tuples with:
-                                - idx 0: node label string
-                                - idx 1: dictionary of node properties
-        :param      edges:   The edges
-        :type       edges:   Array
+        :param      configFileName:  The configuration file name
+        :type       configFileName:  string
         """
 
         # need to start with a fully initialized networkx digraph
         super().__init__()
 
-        # number of symbols in pdfa alphabet
-        self.alphabetSize = 8
+        if configFileName is not None:
 
-        # number of states in pdfa state space
-        self.numStates = 3
+            configData = self.loadConfigData(configFileName)
 
-        # representation of the empty string / symbol (lambda if automata lit.)
-        self.lambdaTransitionSymbol = -1
+            # states and edges must be in the format needed by:
+            #   - networkx.add_nodes_from()
+            #   - networkx.add_edges_from()
+            states, \
+                edges = self.formatDataFromManualConfig(configData['nodes'],
+                                                        configData['edges'])
 
-        # unique start state string label of pdfa
-        self.startState = 'q1'
+            # number of symbols in pdfa alphabet
+            self.alphabetSize = configData['alphabetSize']
+
+            # number of states in pdfa state space
+            self.numStates = configData['numStates']
+
+            # representation of the empty string / symbol
+            # (lambda if automata lit.)
+            self.lambdaTransitionSymbol = configData['lambdaTransitionSymbol']
+
+            # unique start state string label of pdfa
+            self.startState = configData['startState']
+
+        else:
+            raise TypeError('must have a config file name')
 
         # when given pdfa definition in structured form
-        if states:
-            self.add_nodes_from(states)
+        if states and edges:
 
-            if edges:
-                self.add_edges_from(edges)
+            self.add_nodes_from(states)
+            self.add_edges_from(edges)
 
             # save all of the node attributes
             self.nodeProperties = set([k for n in self.nodes
                                        for k in self.nodes[n].keys()])
 
-            raise NotImplementedError('set class properties for real here')
+            self.computeNodeProperties()
 
         else:
+            raise ValueError('need non-empty states and edges lists')
 
-            self.add_node('q0',
-                          final_probability=0.89,
-                          transDistribution=None,
-                          isAccepting=True)
-            self.add_node('q1',
-                          final_probability=0.00,
-                          transDistribution=None,
-                          isAccepting=False)
-            self.add_node('q2',
-                          final_probability=1.00,
-                          transDistribution=None,
-                          isAccepting=True)
+    def formatDataFromManualConfig(self, nodes, adjList):
+        """
+        Converts node and adjList data from a manually specified YAML config
+        file to the format needed by:
+            - networkx.add_nodes_from()
+            - networkx.add_edges_from()
 
-            probSad = 0.01
+        :param      nodes:    dict of node objects to be converted
+        :type       nodes:    dict of node label to node propeties
+        :param      adjList:  dictionary adj. list to be converted
+        :type       adjList:  dict of src node label to dict of dest label to
+                              edge properties
 
-            self.add_edge('q1', 'q1', symbol=0, probability=0.05)
-            self.add_edge('q1', 'q0', symbol=4, probability=0.89)
-            self.add_edge('q1', 'q2', symbol=1, probability=probSad)
-            self.add_edge('q1', 'q2', symbol=2, probability=probSad)
-            self.add_edge('q1', 'q2', symbol=3, probability=probSad)
-            self.add_edge('q1', 'q2', symbol=5, probability=probSad)
-            self.add_edge('q1', 'q2', symbol=6, probability=probSad)
-            self.add_edge('q1', 'q2', symbol=7, probability=probSad)
+        :returns:   properly formated node and edge list containers
+        :rtype:     tuple:
+                    (
+                     nodes - list of tuples: (node label, node attribute dict),
+                     edges - list of tuples: (src node label, dest node label,
+                                              edge attribute dict)
+                    )
+        """
 
-            self.add_edge('q0', 'q0', symbol=4, probability=0.05)
-            self.add_edge('q0', 'q2', symbol=1, probability=probSad)
-            self.add_edge('q0', 'q2', symbol=2, probability=probSad)
-            self.add_edge('q0', 'q2', symbol=3, probability=probSad)
-            self.add_edge('q0', 'q2', symbol=5, probability=probSad)
-            self.add_edge('q0', 'q2', symbol=6, probability=probSad)
-            self.add_edge('q0', 'q2', symbol=7, probability=probSad)
+        # need to convert the configuration adjacency list given in the config
+        # to an edge list given as a 3-tuple of (source, dest, edgeAttrDict)
+        edgeList = []
+        for sourceNode, destEdgesData in adjList.items():
+
+            # don't need to add any edges if there is no edge data
+            if destEdgesData is None:
+                continue
+
+            for destNode in destEdgesData:
+
+                symbols = destEdgesData[destNode]['symbols']
+                probabilities = destEdgesData[destNode]['probabilities']
+
+                for symbol, probability in zip(symbols, probabilities):
+
+                    edgeData = {'symbol': symbol, 'probability': probability}
+                    newEdge = (sourceNode, destNode, edgeData)
+                    edgeList.append(newEdge)
+
+        # best convention is to convert dict_items to a list, even though both
+        # are iterable
+        convertedNodes = list(nodes.items())
+
+        return convertedNodes, edgeList
+
+    def computeNodeProperties(self):
+        """
+        Calculates the properties for each node.
+
+        currently calculated properties:
+            - 'isAccepting'
+            - 'transDistribution'
+        """
 
         for node in self.nodes:
-            self.setNodeTransDistribution(node)
-            self.setNodeLabels()
-            self.setEdgeLabels()
 
-    def setNodeTransDistribution(self, currState):
+            # beta-acceptance property shouldn't change after load in
+            self.nodes[node]['isAccepting'] = self.setStateAcceptance(node)
 
-        edgeData = self.edges([currState], data=True)
+            # if we compute this once, we can sample from each distribution
+            self.nodes[node]['transDistribution'] = \
+                self.setStateTransDistribution(node, self.edges)
+
+    def setStateAcceptance(self, currState):
+        """
+        Sets the state acceptance.
+
+        :param      currState:  The curr state
+        :type       currState:  { type_description }
+
+        :returns:   { description_of_the_return_value }
+        :rtype:     { return_type_description }
+        """
+
+        return True
+
+    def setStateTransDistribution(self, currState, edges):
+        """
+        Computes a static state transition distribution for given state
+        
+        :param      currState:  The current state label
+        :type       currState:  string
+        :param      edges:      The networkx edge list
+        :type       edges:      list
+        
+        :returns:   a function to sample the discrete state transition
+                    distribution
+        :rtype:     stats.rv_discrete object
+        """
+
+        edgeData = edges([currState], data=True)
 
         edgeDests = [edge[1] for edge in edgeData]
         edgeSymbols = [edge[2]['symbol'] for edge in edgeData]
@@ -109,13 +175,14 @@ class PDFA(nx.MultiDiGraph):
         nextSymbolDist = stats.rv_discrete(name='custm',
                                            values=(edgeSymbols, edgeProbs))
 
-        self.nodes[currState]['transDistribution'] = nextSymbolDist
+        return nextSymbolDist
 
     def setNodeLabels(self):
         """
-        Sets the node's dataKey data from the graph
-        :returns:   None
-        :rtype:     NoneType
+        Sets the node labels.
+    
+        :returns:   { description_of_the_return_value }
+        :rtype:     { return_type_description }
         """
 
         return 2
@@ -123,13 +190,13 @@ class PDFA(nx.MultiDiGraph):
     def getNextState(self, currState):
         """
         Gets the next state.
-
+    
         :param      currState:   The curr state
         :type       currState:   { type_description }
-
+    
         :returns:   The next state.
         :rtype:     { return_type_description }
-
+    
         :raises     ValueError:  { exception_description }
         """
 
@@ -154,6 +221,12 @@ class PDFA(nx.MultiDiGraph):
                 return (nextState[0], nextSymbol)
 
     def sample(self):
+        """
+        { function_description }
+    
+        :returns:   { description_of_the_return_value }
+        :rtype:     { return_type_description }
+        """
 
         currState = self.startState
         lengthOfString = 1
@@ -173,7 +246,10 @@ class PDFA(nx.MultiDiGraph):
 
         return sampledString, lengthOfString
 
-    def draw(self):
+    def drawIPython(self):
+        """
+        Draws i python.
+        """
 
         dotString = to_pydot(self).to_string()
         print(dotString)
@@ -182,10 +258,18 @@ class PDFA(nx.MultiDiGraph):
     ##
     # @brief      Gets the node's dataKey data from the graph
     #
-    # @param      nodeLabel  The node label
-    # @param      dataKey    The data key string
+    # @param      nodeLabel  The node label @param      dataKey    The data key
+    # string
     #
     # @return     The node data associated with the nodeLabel and dataKey
+    #
+    # :type       nodeLabel:  { type_description }
+    # :param      nodeLabel:  The node label
+    # :type       dataKey:    { type_description }
+    # :param      dataKey:    The data key
+    #
+    # :returns:   The node data.
+    # :rtype:     { return_type_description }
     #
     def getNodeData(self, nodeLabel, dataKey):
 
@@ -196,9 +280,15 @@ class PDFA(nx.MultiDiGraph):
     ##
     # @brief      Sets the node's dataKey data from the graph
     #
-    # @param      nodeLabel  The node label
-    # @param      dataKey    The data key string
-    # @param      data       The data to set the item at dataKey to
+    # @param      nodeLabel  The node label @param      dataKey    The data key
+    # string @param      data       The data to set the item at dataKey to
+    #
+    # :type       nodeLabel:  { type_description }
+    # :param      nodeLabel:  The node label
+    # :type       dataKey:    { type_description }
+    # :param      dataKey:    The data key
+    # :type       data:       { type_description }
+    # :param      data:       The data
     #
     def setNodeData(self, nodeLabel, dataKey, data):
 
@@ -212,6 +302,12 @@ class PDFA(nx.MultiDiGraph):
     #
     # @return     configuration data dictionary for the simulation
     #
+    # :type       configFileName:  { type_description }
+    # :param      configFileName:  The configuration file name
+    #
+    # :returns:   { description_of_the_return_value }
+    # :rtype:     { return_type_description }
+    #
     @staticmethod
     def loadConfigData(configFileName):
 
@@ -220,30 +316,51 @@ class PDFA(nx.MultiDiGraph):
 
         return configData
 
+    def generateSamplesFromPDFA(self, numSamples):
+        """
+        { function_description }
+    
+        :param      numSamples:  The number samples
+        :type       numSamples:  { type_description }
+    
+        :returns:   { description_of_the_return_value }
+        :rtype:     { return_type_description }
+        """
 
-def generateSamplesFromPDFA(pdfa, numSamples):
-
-    samples = []
-    stringLengths = []
-
-    for i in range(0, numSamples):
-
-        string, stringLength = pdfa.sample()
-
-        samples.append(string)
-        stringLengths.append(stringLength)
-
-    return (samples, stringLengths)
-
-
-def writeSamplesToFile(fName, samples, numSamples, stringLengths,
-                       alphabetSize):
-
-    with open(fName, 'w+') as f:
-
-        # need the header to be:
-        # number_of_training_samples size_of_alphabet
-        f.write(str(numSamples) + ' ' + str(alphabetSize) + '\n')
+        samples = []
+        stringLengths = []
 
         for i in range(0, numSamples):
-            f.write(str(stringLengths[i]) + ' ' + str(samples[i]) + '\n')
+
+            string, stringLength = self.sample()
+
+            samples.append(string)
+            stringLengths.append(stringLength)
+
+        return (samples, stringLengths)
+
+    def writeSamplesToFile(self, fName, samples, numSamples, stringLengths,
+                           alphabetSize):
+        """
+        Writes a samples to file.
+
+        :param      fName:          The f name
+        :type       fName:          { type_description }
+        :param      samples:        The samples
+        :type       samples:        { type_description }
+        :param      numSamples:     The number samples
+        :type       numSamples:     { type_description }
+        :param      stringLengths:  The string lengths
+        :type       stringLengths:  { type_description }
+        :param      alphabetSize:   The alphabet size
+        :type       alphabetSize:   { type_description }
+        """
+
+        with open(fName, 'w+') as f:
+
+            # need the header to be:
+            # number_of_training_samples size_of_alphabet
+            f.write(str(numSamples) + ' ' + str(alphabetSize) + '\n')
+
+            for i in range(0, numSamples):
+                f.write(str(stringLengths[i]) + ' ' + str(samples[i]) + '\n')

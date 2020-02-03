@@ -1,3 +1,18 @@
+# defines the final state probability needed for a state to be accepting
+beta: 0.90
+
+# number of symbols in pdfa alphabet
+alphabetSize: 8
+
+# number of states in pdfa state space
+numStates: 3
+
+# representation of the empty string / symbol (lambda if automata lit.)
+lambdaTransitionSymbol: -1
+
+# unique start state string label of pdfa
+startState: 'q1'
+
 # define a list of node labels, where each label is a string identifier label
 # for a unique node, and the metadata properties for each node
 nodes:
@@ -5,61 +20,73 @@ nodes:
   'q0':
     final_probability: 0.89
     transDistribution: null
-    isAccepting: True
+    isAccepting: null
 
   'q1':
     final_probability: 0.00
     transDistribution: null
-    isAccepting: True
+    isAccepting: null
 
   'q2':
     final_probability: 1.00
     transDistribution: null
-    isAccepting: True
+    isAccepting: null
 
 # define the edges of the graph
 edges:
 
   'q1':
-    - ['A', weight: 1.0]
-    - ['B', weight: 1.0]
-    - ['C', weight: 1.0]
 
-  'A':
-    - ['D', weight: 1.0]
-    - ['E', weight: 1.0]
-    - ['F', weight: 3.0]
+    'q1':
+      symbols:
+        - 0
+      probabilities:
+        - 0.74
 
-  'B':
-    - ['G', weight: 4.0]
-    - ['H', weight: 1.0]
-    - ['I', weight: 2.0]
+    'q0':
+      symbols:
+        - 4
+      probabilities:
+        - 0.20
 
-  'C':
-    - ['J', weight: 1.0]
-    - ['K', weight: 1.0]
-    - ['L', weight: 1.0]
+    'q2':
+      symbols:
+        - 1
+        - 2
+        - 3
+        - 5
+        - 6
+        - 7
+      probabilities:
+        - 0.01
+        - 0.01
+        - 0.01
+        - 0.01
+        - 0.01
+        - 0.01
 
-  'D':
+  'q0':
 
-  'E':
-    - ['OMEGA', weight: 3.0]
-  
-  'F':
+    'q0':
+      symbols:
+        - 4
+      probabilities:
+        - 0.05
 
-  'G':
-    - ['OMEGA', weight: 3.0]
+    'q2':
+      symbols:
+        - 1
+        - 2
+        - 3
+        - 5
+        - 6
+        - 7
+      probabilities:
+        - 0.01
+        - 0.01
+        - 0.01
+        - 0.01
+        - 0.01
+        - 0.01
 
-  'H':
-
-  'I':
-    - ['OMEGA', weight: 3.0]
-
-  'J':
-  
-  'K':
-    - ['OMEGA', weight: 2.0]
-
-  'L':
-
-  'OMEGA':
+  'q2':
