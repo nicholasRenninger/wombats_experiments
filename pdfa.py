@@ -20,7 +20,6 @@ class PDFA(nx.MultiDiGraph):
         - isAccepting: a boolean flag determining whether the pdfa considers
                        the node accepting
 
-
     Edge Properties
     -----------------
         - symbol: the numeric symbol value emitted when the edge is traversed
@@ -148,16 +147,22 @@ class PDFA(nx.MultiDiGraph):
 
     def setStateAcceptance(self, currState):
         """
-        Sets the state acceptance.
+        Sets the state acceptance property for the given state.
 
-        :param      currState:  The curr state
-        :type       currState:  { type_description }
+        If currState's final_probability >= beta, then the state accepts
 
-        :returns:   { description_of_the_return_value }
-        :rtype:     { return_type_description }
+        :param      currState:  The current state's node label
+        :type       currState:  string
         """
 
-        return True
+        currFinalProb = self.getNodeData(currState, 'final_probability')
+
+        if currFinalProb >= self.beta:
+            stateAccepts = True
+        else:
+            stateAccepts = False
+
+        self.setNodeData(currState, 'isAccepting', stateAccepts)
 
     def setStateTransDistribution(self, currState, edges):
         """
@@ -196,24 +201,27 @@ class PDFA(nx.MultiDiGraph):
     def setNodeLabels(self):
         """
         Sets the node labels.
-    
+
         :returns:   { description_of_the_return_value }
         :rtype:     { return_type_description }
         """
 
         return 2
 
-    def getNextState(self, currState):
+    def chooseNextState(self, currState):
         """
-        Gets the next state.
-    
-        :param      currState:   The curr state
-        :type       currState:   { type_description }
-    
-        :returns:   The next state.
-        :rtype:     { return_type_description }
-    
-        :raises     ValueError:  { exception_description }
+        Chooses the next state based on currState's transition distribution
+
+        :param      currState:   The current state label
+        :type       currState:   string
+
+        :returns:   The next state's label and the symbol emitted by changing
+                    states
+        :rtype:     tuple(string, numeric)
+
+        :raises     ValueError:  if more than one non-zero probability
+                                 transition from currState under a given
+                                 symbol exists
         """
 
         transDist = self.nodes[currState]['transDistribution']
@@ -231,101 +239,92 @@ class PDFA(nx.MultiDiGraph):
                          if data['symbol'] == nextSymbol]
 
             if len(nextState) > 1:
-                raise ValueError('nextState' + str(nextState) +
-                                 'is not deterministic :()')
+                raise ValueError('1 < transitions: ' + str(nextState) +
+                                 'from' + currState + ' - not deterministic')
             else:
                 return (nextState[0], nextSymbol)
 
-    def sample(self):
+    def generateTrace(self, startState):
         """
-        { function_description }
-    
-        :returns:   { description_of_the_return_value }
-        :rtype:     { return_type_description }
+        Generates a trace from the pdfa starting from startState
+
+        :type       startState:  the state label to start sampling traces from
+        :param      startState:  string
+
+        :returns:   the sequence of symbols emitted and the length of the trace
+        :rtype:     tuple(list of strings, integer)
         """
 
-        currState = self.startState
-        lengthOfString = 1
-        nextState, nextSymbol = self.getNextState(currState)
-        sampledString = str(nextSymbol)
+        currState = startState
+        lengthOfTrace = 1
+        nextState, nextSymbol = self.chooseNextState(currState)
+        sampledTrace = str(nextSymbol)
 
         while nextSymbol != self.lambdaTransitionSymbol:
 
-            nextState, nextSymbol = self.getNextState(currState)
+            nextState, nextSymbol = self.chooseNextState(currState)
 
             if nextSymbol == self.lambdaTransitionSymbol:
                 break
 
-            sampledString += ' ' + str(nextSymbol)
-            lengthOfString += 1
+            sampledTrace += ' ' + str(nextSymbol)
+            lengthOfTrace += 1
             currState = nextState
 
-        return sampledString, lengthOfString
+        return sampledTrace, lengthOfTrace
 
     def drawIPython(self):
         """
-        Draws i python.
+        Draws the pdfa structure in a way compatible with a jupyter / IPython
+        notebook
         """
 
         dotString = to_pydot(self).to_string()
-        print(dotString)
         display(gv.Source(dotString))
 
-    ##
-    # @brief      Gets the node's dataKey data from the graph
-    #
-    # @param      nodeLabel  The node label @param      dataKey    The data key
-    # string
-    #
-    # @return     The node data associated with the nodeLabel and dataKey
-    #
-    # :type       nodeLabel:  { type_description }
-    # :param      nodeLabel:  The node label
-    # :type       dataKey:    { type_description }
-    # :param      dataKey:    The data key
-    #
-    # :returns:   The node data.
-    # :rtype:     { return_type_description }
-    #
     def getNodeData(self, nodeLabel, dataKey):
+        """
+        Gets the node's dataKey data from the graph
+
+        :param      nodeLabel:  The node label
+        :type       nodeLabel:  string
+        :param      dataKey:    The desired node data's key name
+        :type       dataKey:    string
+
+        :returns:   The node data associated with the nodeLabel and dataKey
+        :rtype:     type of self.nodes.data()[nodeLabel][dataKey]
+        """
 
         nodeData = self.nodes.data()
 
         return nodeData[nodeLabel][dataKey]
 
-    ##
-    # @brief      Sets the node's dataKey data from the graph
-    #
-    # @param      nodeLabel  The node label @param      dataKey    The data key
-    # string @param      data       The data to set the item at dataKey to
-    #
-    # :type       nodeLabel:  { type_description }
-    # :param      nodeLabel:  The node label
-    # :type       dataKey:    { type_description }
-    # :param      dataKey:    The data key
-    # :type       data:       { type_description }
-    # :param      data:       The data
-    #
     def setNodeData(self, nodeLabel, dataKey, data):
+        """
+        Sets the node's dataKey data from the graph
+
+        :param      nodeLabel:  The node label
+        :type       nodeLabel:  string
+        :param      dataKey:    The desired node data's key name
+        :type       dataKey:    string
+        :param      data:       The data to associate with dataKey
+        :type       data:       whatever u want bro
+        """
 
         nodeData = self.nodes.data()
         nodeData[nodeLabel][dataKey] = data
 
-    ##
-    # @brief      reads in the simulation parameters from a YAML config file
-    #
-    # @param      configFileName  The YAML configuration file name
-    #
-    # @return     configuration data dictionary for the simulation
-    #
-    # :type       configFileName:  { type_description }
-    # :param      configFileName:  The configuration file name
-    #
-    # :returns:   { description_of_the_return_value }
-    # :rtype:     { return_type_description }
-    #
     @staticmethod
     def loadConfigData(configFileName):
+        """
+        reads in the simulation parameters from a YAML config file
+
+        :param      configFileName:  The YAML configuration file name
+        :type       configFileName:  filename string
+
+        :returns:   configuration data dictionary for the simulation
+        :rtype:     dictionary of class settings
+        """
 
         with open(configFileName, 'r') as stream:
             configData = yaml.load(stream, Loader=yaml.Loader)
@@ -334,49 +333,49 @@ class PDFA(nx.MultiDiGraph):
 
     def generateSamplesFromPDFA(self, numSamples):
         """
-        { function_description }
-    
-        :param      numSamples:  The number samples
-        :type       numSamples:  { type_description }
-    
-        :returns:   { description_of_the_return_value }
-        :rtype:     { return_type_description }
+        generates numSamples random traces from the pdfa
+
+        :param      numSamples:  The number of trace samples to generate
+        :type       numSamples:  integer
+
+        :returns:   the list of sampled trace strings and a list of the
+                    associated trace lengths
+        :rtype:     tuple(list(strings), list(integers))
         """
 
         samples = []
-        stringLengths = []
+        traceLengths = []
+        startState = self.startState
 
         for i in range(0, numSamples):
 
-            string, stringLength = self.sample()
+            trace, traceLength = self.generateTrace(startState)
 
-            samples.append(string)
-            stringLengths.append(stringLength)
+            samples.append(trace)
+            traceLengths.append(traceLength)
 
-        return (samples, stringLengths)
+        return (samples, traceLengths)
 
-    def writeSamplesToFile(self, fName, samples, numSamples, stringLengths,
-                           alphabetSize):
+    def writeSamplesToFile(self, fName, samples, numSamples, stringLengths):
         """
-        Writes a samples to file.
+        Writes trace samples to a file in the abbadingo format for use in
+        flexfringe
 
-        :param      fName:          The f name
-        :type       fName:          { type_description }
-        :param      samples:        The samples
-        :type       samples:        { type_description }
-        :param      numSamples:     The number samples
-        :type       numSamples:     { type_description }
-        :param      stringLengths:  The string lengths
-        :type       stringLengths:  { type_description }
-        :param      alphabetSize:   The alphabet size
-        :type       alphabetSize:   { type_description }
+        :param      fName:          The file name to write to
+        :type       fName:          filename string
+        :param      samples:        The samples to write to a file
+        :type       samples:        list of strings
+        :param      numSamples:     The number sampled traces
+        :type       numSamples:     integer
+        :param      stringLengths:  list of sampled trace lengths
+        :type       stringLengths:  list of integers
         """
 
         with open(fName, 'w+') as f:
 
             # need the header to be:
             # number_of_training_samples size_of_alphabet
-            f.write(str(numSamples) + ' ' + str(alphabetSize) + '\n')
+            f.write(str(numSamples) + ' ' + str(self.alphabetSize) + '\n')
 
             for i in range(0, numSamples):
                 f.write(str(stringLengths[i]) + ' ' + str(samples[i]) + '\n')
