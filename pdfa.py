@@ -9,6 +9,23 @@ from IPython.display import display
 class PDFA(nx.MultiDiGraph):
     """
     This class describes a probabilistic deterministic finite automaton (pdfa).
+
+    built on networkx, so inherits node and edge data structure definitions
+
+    Node Attributes
+    -----------------
+        - final_probability: final state probability for the node
+        - transDistribution: a sampled-able function to select the next state
+                             and emitted symbol
+        - isAccepting: a boolean flag determining whether the pdfa considers
+                       the node accepting
+
+
+    Edge Properties
+    -----------------
+        - symbol: the numeric symbol value emitted when the edge is traversed
+        - probability: the probability of selecting this edge for traversal,
+                       given the starting node
     """
 
     def __init__(self, configFileName):
@@ -33,18 +50,17 @@ class PDFA(nx.MultiDiGraph):
                 edges = self.formatDataFromManualConfig(configData['nodes'],
                                                         configData['edges'])
 
-            # number of symbols in pdfa alphabet
             self.alphabetSize = configData['alphabetSize']
+            """ number of symbols in pdfa alphabet """
 
-            # number of states in pdfa state space
             self.numStates = configData['numStates']
+            """ number of states in pdfa state space """
 
-            # representation of the empty string / symbol
-            # (lambda if automata lit.)
             self.lambdaTransitionSymbol = configData['lambdaTransitionSymbol']
+            """ representation of the empty string / symbol (a.k.a. lambda) """
 
-            # unique start state string label of pdfa
             self.startState = configData['startState']
+            """ unique start state string label of pdfa """
 
         else:
             raise TypeError('must have a config file name')
@@ -55,9 +71,9 @@ class PDFA(nx.MultiDiGraph):
             self.add_nodes_from(states)
             self.add_edges_from(edges)
 
-            # save all of the node attributes
             self.nodeProperties = set([k for n in self.nodes
                                        for k in self.nodes[n].keys()])
+            """ a set of all of the node propety keys in each nodes' dict """
 
             self.computeNodeProperties()
 
@@ -146,12 +162,12 @@ class PDFA(nx.MultiDiGraph):
     def setStateTransDistribution(self, currState, edges):
         """
         Computes a static state transition distribution for given state
-        
+
         :param      currState:  The current state label
         :type       currState:  string
         :param      edges:      The networkx edge list
         :type       edges:      list
-        
+
         :returns:   a function to sample the discrete state transition
                     distribution
         :rtype:     stats.rv_discrete object
