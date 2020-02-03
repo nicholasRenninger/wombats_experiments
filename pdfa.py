@@ -49,17 +49,20 @@ class PDFA(nx.MultiDiGraph):
                 edges = self.formatDataFromManualConfig(configData['nodes'],
                                                         configData['edges'])
 
+            self.beta = configData['beta']
+            """the final state probability needed for a state to accept"""
+
             self.alphabetSize = configData['alphabetSize']
-            """ number of symbols in pdfa alphabet """
+            """number of symbols in pdfa alphabet"""
 
             self.numStates = configData['numStates']
-            """ number of states in pdfa state space """
+            """number of states in pdfa state space"""
 
             self.lambdaTransitionSymbol = configData['lambdaTransitionSymbol']
-            """ representation of the empty string / symbol (a.k.a. lambda) """
+            """representation of the empty string / symbol (a.k.a. lambda)"""
 
             self.startState = configData['startState']
-            """ unique start state string label of pdfa """
+            """unique start state string label of pdfa"""
 
         else:
             raise TypeError('must have a config file name')
