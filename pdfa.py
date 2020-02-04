@@ -96,8 +96,7 @@ class PDFA(nx.MultiDiGraph):
                               edge properties
 
         :returns:   properly formated node and edge list containers
-        :rtype:     tuple:
-                    (
+        :rtype:     tuple(
                      nodes - list of tuples: (node label, node attribute dict),
                      edges - list of tuples: (src node label, dest node label,
                                               edge attribute dict)
@@ -334,7 +333,7 @@ class PDFA(nx.MultiDiGraph):
 
         return configData
 
-    def generateSamplesFromPDFA(self, numSamples):
+    def generateTraces(self, numSamples):
         """
         generates numSamples random traces from the pdfa
 
