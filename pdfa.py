@@ -359,19 +359,19 @@ class PDFA(nx.MultiDiGraph):
 
         return (samples, traceLengths)
 
-    def writeSamplesToFile(self, fName, samples, numSamples, stringLengths):
+    def writeTracesToFile(self, fName, traces, numSamples, traceLengths):
         """
         Writes trace samples to a file in the abbadingo format for use in
         flexfringe
 
         :param      fName:          The file name to write to
         :type       fName:          filename string
-        :param      samples:        The samples to write to a file
-        :type       samples:        list of strings
+        :param      traces:         The traces to write to a file
+        :type       traces:         list of strings
         :param      numSamples:     The number sampled traces
         :type       numSamples:     integer
-        :param      stringLengths:  list of sampled trace lengths
-        :type       stringLengths:  list of integers
+        :param      traceLengths:   list of sampled trace lengths
+        :type       traceLengths:   list of integers
         """
 
         with open(fName, 'w+') as f:
@@ -381,4 +381,4 @@ class PDFA(nx.MultiDiGraph):
             f.write(str(numSamples) + ' ' + str(self.alphabetSize) + '\n')
 
             for i in range(0, numSamples):
-                f.write(str(stringLengths[i]) + ' ' + str(samples[i]) + '\n')
+                f.write(str(traceLengths[i]) + ' ' + str(traces[i]) + '\n')
