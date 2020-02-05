@@ -334,7 +334,7 @@ class PDFA(nx.MultiDiGraph):
 
         return configData
 
-    def generateSamplesFromPDFA(self, numSamples):
+    def generateTraces(self, numSamples):
         """
         generates numSamples random traces from the pdfa
 
