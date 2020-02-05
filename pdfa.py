@@ -380,5 +380,27 @@ class PDFA(nx.MultiDiGraph):
             # number_of_training_samples size_of_alphabet
             f.write(str(numSamples) + ' ' + str(self.alphabetSize) + '\n')
 
-            for i in range(0, numSamples):
-                f.write(str(traceLengths[i]) + ' ' + str(traces[i]) + '\n')
+            for trace, traceLength in zip(traces, traceLengths):
+                f.write(self.getAbbadingoString(trace, traceLength,
+                                                isPositiveExample=True))
+
+    def getAbbadingoString(self, trace, traceLength, isPositiveExample):
+        """
+        Returns the Abbadingo (sigh) formatted string given a trace string and
+        the label for the trace
+
+        :param      trace:              The trace string to represent in
+                                        Abbadingo
+        :type       trace:              string
+        :param      traceLength:        The trace length
+        :type       traceLength:        integer
+        :param      isPositiveExample:  Indicates if the trace is a positive
+                                        example of the pdfa
+        :type       isPositiveExample:  boolean
+
+        :returns:   The abbadingo formatted string for the given trace
+        :rtype:     string
+        """
+
+        traceLabel = {False: '0', True: '1'}[isPositiveExample]
+        return traceLabel + ' ' + str(traceLength) + ' ' + str(trace) + '\n'
