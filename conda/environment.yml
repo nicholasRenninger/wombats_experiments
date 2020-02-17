@@ -3,10 +3,12 @@ channels:
   - defaults
 dependencies:
   - python=3
+  - jupyter_contrib_nbextensions
   - networkx
   - matplotlib
   - scipy
   - python-graphviz
   - pydot
+  - joblib
 prefix: /Users/nicholasrenninger/anaconda3/envs/dfaInvestigations
 

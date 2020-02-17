@@ -4,6 +4,10 @@ from networkx.drawing.nx_pydot import to_pydot
 import graphviz as gv
 import yaml
 from IPython.display import display
+import multiprocessing
+from joblib import Parallel, delayed
+
+num_cores = multiprocessing.cpu_count()
 
 
 class PDFA(nx.MultiDiGraph):
@@ -385,22 +389,19 @@ class PDFA(nx.MultiDiGraph):
         :rtype:     tuple(list(strings), list(integers))
         """
 
-        samples = []
-        traceLengths = []
         startState = self.startState
 
         # make sure the numSamples is an int, so you don't have to wrap shit in
         # an 'int()' every time...
         numSamples = int(numSamples)
 
-        for i in range(0, numSamples):
+        iters = range(0, numSamples)
+        results = Parallel(n_jobs=num_cores)(
+            delayed(self.generateTrace)(startState) for i in iters)
 
-            trace, traceLength = self.generateTrace(startState)
+        samples, traceLengths = zip(*results)
 
-            samples.append(trace)
-            traceLengths.append(traceLength)
-
-        return (samples, traceLengths)
+        return samples, traceLengths
 
     def dispEdges(self):
         """
