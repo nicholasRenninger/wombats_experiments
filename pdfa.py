@@ -146,13 +146,13 @@ class PDFA(nx.MultiDiGraph):
         for node in self.nodes:
 
             # beta-acceptance property shouldn't change after load in
-            self.nodes[node]['isAccepting'] = self.setStateAcceptance(node)
+            self.setStateAcceptance(node, self.beta)
 
             # if we compute this once, we can sample from each distribution
             self.nodes[node]['transDistribution'] = \
                 self.setStateTransDistribution(node, self.edges)
 
-    def setStateAcceptance(self, currState):
+    def setStateAcceptance(self, currState, beta):
         """
         Sets the state acceptance property for the given state.
 
@@ -160,6 +160,9 @@ class PDFA(nx.MultiDiGraph):
 
         :param      currState:  The current state's node label
         :type       currState:  string
+        :param      beta:       The cut point final state probability
+                                acceptance parameter for the PDFA
+        :type       beta:       float
         """
 
         currFinalProb = self.getNodeData(currState, 'final_probability')
@@ -216,8 +219,13 @@ class PDFA(nx.MultiDiGraph):
 
             finalProbString = str(nodeData['final_probability'])
             nodeDotLabelString = nodeName + ': ' + finalProbString
+            graphvizNodeLabel = {'label': nodeDotLabelString}
 
-            labelDict[nodeName] = {'label': nodeDotLabelString}
+            isAccepting = nodeData['isAccepting']
+            if isAccepting:
+                graphvizNodeLabel.update({'shape': 'doublecircle'})
+
+            labelDict[nodeName] = graphvizNodeLabel
 
         nx.set_node_attributes(self, labelDict)
 
