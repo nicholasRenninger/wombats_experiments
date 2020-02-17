@@ -228,6 +228,8 @@ class PDFA(nx.MultiDiGraph):
             isAccepting = nodeData['isAccepting']
             if isAccepting:
                 graphvizNodeLabel.update({'shape': 'doublecircle'})
+            else:
+                graphvizNodeLabel.update({'shape': 'circle'})
 
             labelDict[nodeName] = graphvizNodeLabel
 
@@ -437,6 +439,10 @@ class PDFA(nx.MultiDiGraph):
         :param      traceLengths:   list of sampled trace lengths
         :type       traceLengths:   list of integers
         """
+
+        # make sure the numSamples is an int, so you don't have to wrap shit in
+        # an 'int()' every time...
+        numSamples = int(numSamples)
 
         with open(fName, 'w+') as f:
 
