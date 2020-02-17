@@ -1,12 +1,12 @@
-name: pfacc
+name: dfaInvestigations
 channels:
   - defaults
 dependencies:
   - python=3
-  - jupyter_contrib_nbextensions
   - networkx
-  - scipy
   - matplotlib
+  - scipy
   - python-graphviz
-prefix: /Users/nicholasrenninger/anaconda3/envs/pfacc
+  - pydot
+prefix: /Users/nicholasrenninger/anaconda3/envs/dfaInvestigations
 
