@@ -378,7 +378,7 @@ class PDFA(nx.MultiDiGraph):
         generates numSamples random traces from the pdfa
 
         :param      numSamples:  The number of trace samples to generate
-        :type       numSamples:  integer
+        :type       numSamples:  scalar int
 
         :returns:   the list of sampled trace strings and a list of the
                     associated trace lengths
@@ -388,6 +388,10 @@ class PDFA(nx.MultiDiGraph):
         samples = []
         traceLengths = []
         startState = self.startState
+
+        # make sure the numSamples is an int, so you don't have to wrap shit in
+        # an 'int()' every time...
+        numSamples = int(numSamples)
 
         for i in range(0, numSamples):
 
