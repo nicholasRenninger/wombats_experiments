@@ -322,8 +322,6 @@ class PDFA(nx.MultiDiGraph):
         """
 
         dotString = to_pydot(self).to_string()
-        print(dotString)
-        print(gv.Source(dotString))
         display(gv.Source(dotString))
 
     def getNodeData(self, nodeLabel, dataKey):
