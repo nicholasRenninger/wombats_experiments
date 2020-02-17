@@ -77,7 +77,11 @@ class PDFA(nx.MultiDiGraph):
                                        for k in self.nodes[n].keys()])
             """ a set of all of the node propety keys in each nodes' dict """
 
+            # do batch computations at initialization, as these shouldn't
+            # frequently change
             self.computeNodeProperties()
+            self.setNodeLabels()
+            self.setEdgeLabels()
 
         else:
             raise ValueError('need non-empty states and edges lists')
@@ -203,13 +207,40 @@ class PDFA(nx.MultiDiGraph):
 
     def setNodeLabels(self):
         """
-        Sets the node labels.
-
-        :returns:   { description_of_the_return_value }
-        :rtype:     { return_type_description }
+        Sets each node's label property for use in graphviz output
         """
 
-        return 2
+        labelDict = {}
+
+        for nodeName, nodeData in self.nodes.data():
+
+            finalProbString = str(nodeData['final_probability'])
+            nodeDotLabelString = nodeName + ': ' + finalProbString
+
+            labelDict[nodeName] = {'label': nodeDotLabelString}
+
+        nx.set_node_attributes(self, labelDict)
+
+    def setEdgeLabels(self):
+        """
+        Sets each edge's label property for use in graphviz output
+        """
+
+        # this needs to be a mapping from edges (node label tuples) to a
+        # dictionary of attributes
+        labelDict = {}
+
+        for u, v, key, data in self.edges(data=True, keys=True):
+
+            edgeLabelString = str(data['symbol']) + ': ' + \
+                str(data['probability'])
+
+            newLabelProperty = {'label': edgeLabelString}
+            nodeIdentifier = (u, v, key)
+
+            labelDict[nodeIdentifier] = newLabelProperty
+
+        nx.set_edge_attributes(self, labelDict)
 
     def chooseNextState(self, currState):
         """
@@ -223,8 +254,8 @@ class PDFA(nx.MultiDiGraph):
         :rtype:     tuple(string, numeric)
 
         :raises     ValueError:  if more than one non-zero probability
-                                 transition from currState under a given
-                                 symbol exists
+                                 transition from currState under a given symbol
+                                 exists
         """
 
         transDist = self.nodes[currState]['transDistribution']
@@ -283,6 +314,8 @@ class PDFA(nx.MultiDiGraph):
         """
 
         dotString = to_pydot(self).to_string()
+        print(dotString)
+        print(gv.Source(dotString))
         display(gv.Source(dotString))
 
     def getNodeData(self, nodeLabel, dataKey):
@@ -358,6 +391,26 @@ class PDFA(nx.MultiDiGraph):
             traceLengths.append(traceLength)
 
         return (samples, traceLengths)
+
+    def dispEdges(self):
+        """
+        Prints each edge in the graph in an edge-list tuple format
+        """
+
+        for n, nbrs in self.adj.items():
+            for nbr, eattr in nbrs.items():
+
+                symbol = str(eattr['symbol'])
+                prob = str(eattr['probability'])
+                print('(%s, %s, %d:%0.3g)' % (str(n), str(nbr), symbol, prob))
+
+    def dispNodes(self):
+        """
+        Prints each node's data view
+        """
+
+        for node in self.nodes(data=True):
+            print(node)
 
     def writeTracesToFile(self, fName, traces, numSamples, traceLengths):
         """
