@@ -10,6 +10,13 @@ docs/*
 # shouldn't add recorded lectures lol
 Lectures/Recorded*lectures
 
+# flexfringe outputs
+Source.gv
+Source.gv.png
+dfafinal.dot
+dfainit_dfa.dot
+pre_dfadfa1.dot
+
 # jupyter notebooks
 MANIFEST
 build
