@@ -4,3 +4,6 @@
 [submodule "lingeling"]
 	path = lingeling
 	url = https://github.com/nicholasRenninger/lingeling.git
+[submodule "wombats"]
+	path = wombats
+	url = https://github.com/nicholasRenninger/wombats.git
