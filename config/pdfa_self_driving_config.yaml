@@ -2,16 +2,16 @@
 beta: 0.90
 
 # number of symbols in pdfa alphabet
-alphabetSize: 8
+alphabet_size: 8
 
 # number of states in pdfa state space
-numStates: 3
+num_states: 3
 
 # representation of the empty string / symbol (lambda if automata lit.)
-lambdaTransitionSymbol: -1
+lambda_transition_sym: -1
 
 # unique start state string label of pdfa
-startState: 'q1'
+start_state: 'q1'
 
 # define a list of node labels, where each label is a string identifier label
 # for a unique node, and the metadata properties for each node
@@ -19,18 +19,18 @@ nodes:
 
   'q0':
     final_probability: 0.89
-    transDistribution: null
-    isAccepting: null
+    trans_distribution: null
+    is_accepting: null
 
   'q1':
     final_probability: 0.00
-    transDistribution: null
-    isAccepting: null
+    trans_distribution: null
+    is_accepting: null
 
   'q2':
     final_probability: 1.00
-    transDistribution: null
-    isAccepting: null
+    trans_distribution: null
+    is_accepting: null
 
 # define the edges of the graph
 edges:
