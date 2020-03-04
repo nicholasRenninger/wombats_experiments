@@ -1,15 +1,16 @@
 name: dfaInvestigations
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - python=3
   - jupyter_contrib_nbextensions
-  - networkx
   - matplotlib
   - scipy
   - python-graphviz
   - pydot
   - joblib
   - scikit-learn
+  - networkx
 prefix: /Users/nicholasrenninger/anaconda3/envs/dfaInvestigations
 
