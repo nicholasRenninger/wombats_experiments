@@ -3,14 +3,19 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3
+  - joblib
   - jupyter_contrib_nbextensions
-  - matplotlib
-  - scipy
+  - python=3
   - python-graphviz
   - pydot
-  - joblib
+  - matplotlib
   - scikit-learn
+  - pip
+  - scipy
   - networkx
+  - bidict
+  - pygraphviz
+  - pip:
+    - gym-minigrid
 prefix: /Users/nicholasrenninger/anaconda3/envs/dfaInvestigations
 
