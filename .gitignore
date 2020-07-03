@@ -7,8 +7,8 @@ Icon?
 .DS_Store
 docs/*
 
-# shouldn't add recorded lectures lol
-Lectures/Recorded*lectures
+# dont add logs
+minigrid_env_logs/*
 
 # flexfringe outputs
 Source.gv
