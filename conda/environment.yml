@@ -1,7 +1,7 @@
 name: dfaInvestigations
 channels:
-  - conda-forge
   - defaults
+  - conda-forge
 dependencies:
   - joblib
   - jupyter_contrib_nbextensions
@@ -15,6 +15,7 @@ dependencies:
   - networkx
   - bidict
   - pygraphviz
+  - mkl
   - pip:
     - gym-minigrid
 prefix: /Users/nicholasrenninger/anaconda3/envs/dfaInvestigations
