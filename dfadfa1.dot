@@ -1,6 +1,0 @@
-digraph DFA {
-		I -> 2;
-	0 [shape=doublecircle];
-	1 [shape=Mcircle];
-	2 [shape=Mcircle];
-}

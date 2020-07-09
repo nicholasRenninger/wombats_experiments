@@ -9,6 +9,7 @@ docs/*
 
 # dont add logs
 minigrid_env_logs/*
+automaton_images/hp_opt/*
 
 # flexfringe outputs
 Source.gv
