@@ -3,8 +3,13 @@ from nbconvert.preprocessors import ExecutePreprocessor
 import glob
 import os
 
+nbs_to_skip = ['Flexfringe_Hyperparameter_Study.ipynb']
+
 os.chdir('.')
 for notebook_filename in glob.glob("*.ipynb"):
+
+    if notebook_filename in nbs_to_skip:
+        continue
 
     with open(notebook_filename) as f:
         nb = nbformat.read(f, as_version=4)
