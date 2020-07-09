@@ -1,0 +1,18 @@
+digraph  {
+nodesep=0.5;
+ratio=1;
+sep="+25,25";
+splines=True;
+q434 [fillcolor=royalblue1, final_probability="0.0", is_accepting=False, label="q434 : 0.00", shape=box, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fb55e40b890>];
+q300 [fillcolor=gray80, final_probability="0.0", is_accepting=False, label="q300 : 0.00", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fb55df09950>];
+q34 [fillcolor=lawngreen, final_probability="1.0", is_accepting=True, label="q34 : 1.00", peripheries=2, shape=doubleoctagon, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fb55df09150>];
+q84 [fillcolor=gray80, final_probability="0.0", is_accepting=False, label="q84 : 0.00", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fb55dcb7810>];
+q11 [fillcolor=lawngreen, final_probability="1.0", is_accepting=True, label="q11 : 1.00", peripheries=2, shape=doubleoctagon, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fb55df3c750>];
+q434 -> q434  [fontcolor=blue, key=0, label="empty_red_open: 0.79", probability="0.7926267281105991", symbol=empty_red_open];
+q434 -> q300  [fontcolor=blue, key=0, label="floor_blue_open: 0.16", probability="0.15668202764976957", symbol=floor_blue_open];
+q434 -> q84  [fontcolor=blue, key=0, label="floor_green_open: 0.05", probability="0.05069124423963134", symbol=floor_green_open];
+q300 -> q34  [fontcolor=blue, key=0, label="floor_green_open: 0.23", probability="0.22666666666666666", symbol=floor_green_open];
+q300 -> q300  [fontcolor=blue, key=0, label="empty_red_open: 0.77", probability="0.7733333333333333", symbol=empty_red_open];
+q84 -> q11  [fontcolor=blue, key=0, label="floor_blue_open: 0.26", probability="0.2619047619047619", symbol=floor_blue_open];
+q84 -> q84  [fontcolor=blue, key=0, label="empty_red_open: 0.74", probability="0.7380952380952381", symbol=empty_red_open];
+}
