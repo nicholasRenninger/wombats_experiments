@@ -21,5 +21,3 @@ dependencies:
   - ipywidgets
   - pip:
     - git+https://github.com/maximecb/gym-minigrid.git
-prefix: /Users/nicholasrenninger/anaconda3/envs/dfaInvestigations
-
