@@ -5,6 +5,7 @@ channels:
 dependencies:
   - joblib
   - jupyter_contrib_nbextensions
+  - nbconvert
   - python=3
   - python-graphviz
   - pydot
