@@ -1,0 +1,17 @@
+digraph  {
+nodesep=0.5;
+ratio=1;
+sep="+25,25";
+splines=True;
+q0 [fillcolor=royalblue1, final_probability="0.0", is_accepting=False, label="q0 : 0.00", shape=box, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fad782c0610>];
+q20 [fillcolor=gray80, final_probability="0.0", is_accepting=False, label="q20 : 0.00", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fad785e8210>];
+q137 [fillcolor=lawngreen, final_probability="1.0", is_accepting=True, label="q137 : 1.00", peripheries=2, shape=doubleoctagon, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fad77012ed0>];
+q41 [fillcolor=gray80, final_probability="0.0", is_accepting=False, label="q41 : 0.00", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fad788a3d50>];
+q0 -> q0  [fontcolor=blue, key=0, label="empty_red_open: 0.77", probability="0.7727272727272727", symbol=empty_red_open];
+q0 -> q20  [fontcolor=blue, key=0, label="floor_blue_open: 0.16", probability="0.15656565656565657", symbol=floor_blue_open];
+q0 -> q41  [fontcolor=blue, key=0, label="floor_green_open: 0.07", probability="0.0707070707070707", symbol=floor_green_open];
+q20 -> q20  [fontcolor=blue, key=0, label="empty_red_open: 0.81", probability="0.8080495356037152", symbol=empty_red_open];
+q20 -> q137  [fontcolor=blue, key=0, label="floor_green_open: 0.19", probability="0.19195046439628483", symbol=floor_green_open];
+q41 -> q41  [fontcolor=blue, key=0, label="empty_red_open: 0.77", probability="0.768595041322314", symbol=empty_red_open];
+q41 -> q137  [fontcolor=blue, key=0, label="floor_blue_open: 0.23", probability="0.23140495867768596", symbol=floor_blue_open];
+}

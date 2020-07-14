@@ -1,0 +1,21 @@
+digraph  {
+nodesep=0.5;
+ratio=1;
+sep="+25,25";
+splines=True;
+q90 [fillcolor=royalblue1, final_probability="0.5", is_accepting=False, label="q90 : 0.50", shape=box, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f85199f8690>];
+q277 [fillcolor=gray80, final_probability="0.06293706293706294", is_accepting=False, label="q277 : 0.06", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f851614e090>];
+q36 [fillcolor=lawngreen, final_probability="1.0", is_accepting=True, label="q36 : 1.00", peripheries=2, shape=doubleoctagon, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f8567275e50>];
+q68 [fillcolor=gray80, final_probability="0.0", is_accepting=False, label="q68 : 0.00", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f85152ea590>];
+q340 [fillcolor=gray80, final_probability="0.0", is_accepting=False, label="q340 : 0.00", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f856bd81ad0>];
+q90 -> q277  [fontcolor=blue, key=0, label="floor_blue_open: 0.12", probability="0.12222222222222222", symbol=floor_blue_open];
+q90 -> q68  [fontcolor=blue, key=0, label="empty_red_open: 0.37", probability="0.36666666666666664", symbol=empty_red_open];
+q90 -> q68  [fontcolor=blue, key=1, label="floor_green_open: 0.01", probability="0.011111111111111112", symbol=floor_green_open];
+q277 -> q277  [fontcolor=blue, key=0, label="empty_red_open: 0.69", probability="0.6853146853146853", symbol=empty_red_open];
+q277 -> q36  [fontcolor=blue, key=0, label="floor_green_open: 0.25", probability="0.2517482517482518", symbol=floor_green_open];
+q68 -> q277  [fontcolor=blue, key=0, label="floor_blue_open: 0.06", probability="0.058823529411764705", symbol=floor_blue_open];
+q68 -> q340  [fontcolor=blue, key=0, label="empty_red_open: 0.94", probability="0.9411764705882353", symbol=empty_red_open];
+q340 -> q277  [fontcolor=blue, key=0, label="floor_blue_open: 0.19", probability="0.18823529411764706", symbol=floor_blue_open];
+q340 -> q340  [fontcolor=blue, key=0, label="empty_red_open: 0.76", probability="0.7647058823529411", symbol=empty_red_open];
+q340 -> q340  [fontcolor=blue, key=1, label="floor_green_open: 0.05", probability="0.047058823529411764", symbol=floor_green_open];
+}

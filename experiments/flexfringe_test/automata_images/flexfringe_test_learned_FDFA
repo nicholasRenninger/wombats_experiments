@@ -1,0 +1,35 @@
+digraph  {
+nodesep=0.5;
+ratio=1;
+sep="+25,25";
+splines=True;
+q0 [fillcolor=royalblue1, final_frequency=0, in_frequency=12631, initial_frequency=4500, isAccepting=None, label="4500 : q0 : 0", out_frequency=17131, shape=box, style=filled, trans_distribution=None];
+q51 [fillcolor=gray80, final_frequency=178, in_frequency=178, initial_frequency=0, isAccepting=None, label="0 : q51 : 178", out_frequency=0, style=filled, trans_distribution=None];
+q10 [fillcolor=gray80, final_frequency=3212, in_frequency=3648, initial_frequency=0, isAccepting=None, label="0 : q10 : 3212", out_frequency=436, style=filled, trans_distribution=None];
+q88 [fillcolor=gray80, final_frequency=41, in_frequency=41, initial_frequency=0, isAccepting=None, label="0 : q88 : 41", out_frequency=0, style=filled, trans_distribution=None];
+q149 [fillcolor=gray80, final_frequency=45, in_frequency=45, initial_frequency=0, isAccepting=None, label="0 : q149 : 45", out_frequency=0, style=filled, trans_distribution=None];
+q147 [fillcolor=gray80, final_frequency=37, in_frequency=37, initial_frequency=0, isAccepting=None, label="0 : q147 : 37", out_frequency=0, style=filled, trans_distribution=None];
+q173 [fillcolor=gray80, final_frequency=41, in_frequency=41, initial_frequency=0, isAccepting=None, label="0 : q173 : 41", out_frequency=0, style=filled, trans_distribution=None];
+q90 [fillcolor=gray80, final_frequency=37, in_frequency=37, initial_frequency=0, isAccepting=None, label="0 : q90 : 37", out_frequency=0, style=filled, trans_distribution=None];
+q81 [fillcolor=gray80, final_frequency=40, in_frequency=40, initial_frequency=0, isAccepting=None, label="0 : q81 : 40", out_frequency=0, style=filled, trans_distribution=None];
+q97 [fillcolor=gray80, final_frequency=183, in_frequency=183, initial_frequency=0, isAccepting=None, label="0 : q97 : 183", out_frequency=0, style=filled, trans_distribution=None];
+q46 [fillcolor=gray80, final_frequency=161, in_frequency=161, initial_frequency=0, isAccepting=None, label="0 : q46 : 161", out_frequency=0, style=filled, trans_distribution=None];
+q36 [fillcolor=gray80, final_frequency=187, in_frequency=187, initial_frequency=0, isAccepting=None, label="0 : q36 : 187", out_frequency=0, style=filled, trans_distribution=None];
+q56 [fillcolor=gray80, final_frequency=166, in_frequency=166, initial_frequency=0, isAccepting=None, label="0 : q56 : 166", out_frequency=0, style=filled, trans_distribution=None];
+q55 [fillcolor=gray80, final_frequency=172, in_frequency=172, initial_frequency=0, isAccepting=None, label="0 : q55 : 172", out_frequency=0, style=filled, trans_distribution=None];
+q0 -> q0  [fontcolor=blue, frequency=12631, key=0, label="0: 12631", symbol=0];
+q0 -> q10  [fontcolor=blue, frequency=3453, key=0, label="4: 3453", symbol=4];
+q0 -> q36  [fontcolor=blue, frequency=187, key=0, label="6: 187", symbol=6];
+q0 -> q46  [fontcolor=blue, frequency=161, key=0, label="2: 161", symbol=2];
+q0 -> q51  [fontcolor=blue, frequency=178, key=0, label="3: 178", symbol=3];
+q0 -> q55  [fontcolor=blue, frequency=172, key=0, label="1: 172", symbol=1];
+q0 -> q56  [fontcolor=blue, frequency=166, key=0, label="7: 166", symbol=7];
+q0 -> q97  [fontcolor=blue, frequency=183, key=0, label="5: 183", symbol=5];
+q10 -> q10  [fontcolor=blue, frequency=195, key=0, label="4: 195", symbol=4];
+q10 -> q81  [fontcolor=blue, frequency=40, key=0, label="1: 40", symbol=1];
+q10 -> q88  [fontcolor=blue, frequency=41, key=0, label="3: 41", symbol=3];
+q10 -> q90  [fontcolor=blue, frequency=37, key=0, label="7: 37", symbol=7];
+q10 -> q147  [fontcolor=blue, frequency=37, key=0, label="2: 37", symbol=2];
+q10 -> q149  [fontcolor=blue, frequency=45, key=0, label="5: 45", symbol=5];
+q10 -> q173  [fontcolor=blue, frequency=41, key=0, label="6: 41", symbol=6];
+}

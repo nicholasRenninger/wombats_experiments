@@ -1,0 +1,35 @@
+// produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
+// dfasat/flexfringe -h=kldistance -d=kl_data -n=10 -x=0 -w=1 -a=1 -b=1 -f=1 -I=0 -t=1 -p=0.2 --output-dir=experiments/flexfringe_test/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/flexfringe_test/flexfringe_data/flexfringe_test_train 
+digraph DFA {
+	0 [label="root" shape=box];
+		I -> 0;
+	0 [ label="#34262"  ];
+		0 -> 0 [label="0:12631"  ];
+		0 -> 10 [label="4:3453"  ];
+		0 -> 36 [label="6:187"  ];
+		0 -> 46 [label="2:161"  ];
+		0 -> 51 [label="3:178"  ];
+		0 -> 55 [label="1:172"  ];
+		0 -> 56 [label="7:166"  ];
+		0 -> 97 [label="5:183"  ];
+	51 [ label="#178"  ];
+	10 [ label="#4084"  ];
+		10 -> 10 [label="4:195"  ];
+		10 -> 81 [label="1:40"  ];
+		10 -> 88 [label="3:41"  ];
+		10 -> 90 [label="7:37"  ];
+		10 -> 147 [label="2:37"  ];
+		10 -> 149 [label="5:45"  ];
+		10 -> 173 [label="6:41"  ];
+	88 [ label="#41"  ];
+	149 [ label="#45"  ];
+	147 [ label="#37"  ];
+	173 [ label="#41"  ];
+	90 [ label="#37"  ];
+	81 [ label="#40"  ];
+	97 [ label="#183"  ];
+	46 [ label="#161"  ];
+	36 [ label="#187"  ];
+	56 [ label="#166"  ];
+	55 [ label="#172"  ];
+}

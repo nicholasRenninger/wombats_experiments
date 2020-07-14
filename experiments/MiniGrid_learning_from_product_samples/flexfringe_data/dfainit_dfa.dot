@@ -1,0 +1,57 @@
+// produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
+// dfasat/flexfringe -h=kldistance -d=kl_data -n=1 -x=0 -w=0 -a=0 -b=1 -f=1 -I=0 -t=1 -l=0 -q=0 -y=0 -p=0.8 --output-dir=experiments/MiniGrid_learning_from_product_samples/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/MiniGrid_learning_from_product_samples/flexfringe_data/MiniGrid_learning_from_product_samples_train 
+digraph DFA {
+	0 [label="root" shape=box];
+		I -> 0;
+	0 [ label="#10"  ];
+		0 -> 1 [label="empty_red_open:5"  ];
+	1 [ label="#10"  style=dotted ];
+		1 -> 2 [label="empty_red_open:5"  ];
+	2 [ label="#10"  style=dotted ];
+		2 -> 3 [label="empty_red_open:5"  ];
+	3 [ label="#10"  style=dotted ];
+		3 -> 4 [label="empty_red_open:5"  ];
+	4 [ label="#10"  style=dotted ];
+		4 -> 5 [label="empty_red_open:5"  ];
+	5 [ label="#10"  style=dotted ];
+		5 -> 6 [label="empty_red_open:5"  ];
+	6 [ label="#10"  style=dotted ];
+		6 -> 7 [label="empty_red_open:3"  ];
+		6 -> 18 [label="floor_green_open:2"  ];
+	7 [ label="#6"  style=dotted ];
+		7 -> 8 [label="empty_red_open:3"  ];
+	8 [ label="#6"  style=dotted ];
+		8 -> 9 [label="empty_red_open:3"  ];
+	9 [ label="#6"  style=dotted ];
+		9 -> 10 [label="floor_blue_open:3"  ];
+	10 [ label="#6"  style=dotted ];
+		10 -> 11 [label="empty_red_open:3"  ];
+	11 [ label="#6"  style=dotted ];
+		11 -> 12 [label="empty_red_open:3"  ];
+	12 [ label="#6"  style=dotted ];
+		12 -> 13 [label="empty_red_open:3"  ];
+	13 [ label="#6"  style=dotted ];
+		13 -> 14 [label="empty_red_open:3"  ];
+	14 [ label="#6"  style=dotted ];
+		14 -> 15 [label="empty_red_open:3"  ];
+	15 [ label="#6"  style=dotted ];
+		15 -> 16 [label="empty_red_open:3"  ];
+	16 [ label="#6"  style=dotted ];
+		16 -> 17 [label="floor_green_open:3"  ];
+	17 [ label="#3"  style=dotted ];
+	18 [ label="#4"  style=dotted ];
+		18 -> 19 [label="empty_red_open:2"  ];
+	19 [ label="#4"  style=dotted ];
+		19 -> 20 [label="empty_red_open:2"  ];
+	20 [ label="#4"  style=dotted ];
+		20 -> 21 [label="empty_red_open:2"  ];
+	21 [ label="#4"  style=dotted ];
+		21 -> 22 [label="empty_red_open:2"  ];
+	22 [ label="#4"  style=dotted ];
+		22 -> 23 [label="empty_red_open:2"  ];
+	23 [ label="#4"  style=dotted ];
+		23 -> 24 [label="empty_red_open:2"  ];
+	24 [ label="#4"  style=dotted ];
+		24 -> 25 [label="floor_blue_open:2"  ];
+	25 [ label="#2"  style=dotted ];
+}

@@ -1,0 +1,18 @@
+// produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
+// dfasat/flexfringe -h=kldistance -d=kl_data -m=2 -n=2 -x=0 -w=0 -a=0 -b=0 -f=0 -I=1 -t=1 -q=0 -y=0 -p=0.4 --output-dir=experiments/MiniGrid_learning_from_specification_samples/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/MiniGrid_learning_from_specification_samples/flexfringe_data/MiniGrid_learning_from_specification_samples_train 
+digraph DFA {
+	0 [label="root" shape=box];
+		I -> 0;
+	0 [ label="#792"  ];
+		0 -> 0 [label="empty_red_open:306"  ];
+		0 -> 20 [label="floor_blue_open:62"  ];
+		0 -> 41 [label="floor_green_open:28"  ];
+	20 [ label="#646"  ];
+		20 -> 20 [label="empty_red_open:261"  ];
+		20 -> 137 [label="floor_green_open:62"  ];
+	137 [ label="#62"  ];
+	41 [ label="#242"  ];
+		41 -> 41 [label="empty_red_open:93"  ];
+		41 -> 91 [label="floor_blue_open:28"  ];
+	91 [ label="#28"  ];
+}

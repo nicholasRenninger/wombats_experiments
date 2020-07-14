@@ -1,0 +1,24 @@
+digraph  {
+nodesep=0.5;
+ratio=1;
+sep="+25,25";
+splines=True;
+q0 [fillcolor=royalblue1, final_probability="0.0", is_accepting=False, label="q0 : 0.00", shape=box, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fa7c46de610>];
+q51 [fillcolor=lawngreen, final_probability="1.0", is_accepting=True, label="q51 : 1.00", peripheries=2, shape=doubleoctagon, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fa7c408c2d0>];
+q10 [fillcolor=gray80, final_probability="0.8804824561403509", is_accepting=False, label="q10 : 0.88", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7fa7c11df2d0>];
+q0 -> q0  [fontcolor=blue, key=0, label="0: 0.74", probability="0.7373183118323507", symbol=0];
+q0 -> q10  [fontcolor=blue, key=0, label="4: 0.20", probability="0.20156441538730954", symbol=4];
+q0 -> q51  [fontcolor=blue, key=0, label="3: 0.01", probability="0.010390520109742571", symbol=3];
+q0 -> q51  [fontcolor=blue, key=1, label="5: 0.01", probability="0.010682388652151072", symbol=5];
+q0 -> q51  [fontcolor=blue, key=2, label="2: 0.01", probability="0.009398167065553674", symbol=2];
+q0 -> q51  [fontcolor=blue, key=3, label="6: 0.01", probability="0.01091588348607787", symbol=6];
+q0 -> q51  [fontcolor=blue, key=4, label="7: 0.01", probability="0.009690035607962173", symbol=7];
+q0 -> q51  [fontcolor=blue, key=5, label="1: 0.01", probability="0.010040277858852373", symbol=1];
+q10 -> q10  [fontcolor=blue, key=0, label="4: 0.05", probability="0.05345394736842105", symbol=4];
+q10 -> q51  [fontcolor=blue, key=0, label="3: 0.01", probability="0.011239035087719298", symbol=3];
+q10 -> q51  [fontcolor=blue, key=1, label="5: 0.01", probability="0.012335526315789474", symbol=5];
+q10 -> q51  [fontcolor=blue, key=2, label="2: 0.01", probability="0.010142543859649123", symbol=2];
+q10 -> q51  [fontcolor=blue, key=3, label="6: 0.01", probability="0.011239035087719298", symbol=6];
+q10 -> q51  [fontcolor=blue, key=4, label="7: 0.01", probability="0.010142543859649123", symbol=7];
+q10 -> q51  [fontcolor=blue, key=5, label="1: 0.01", probability="0.010964912280701754", symbol=1];
+}

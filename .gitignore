@@ -8,15 +8,9 @@ Icon?
 docs/*
 
 # dont add logs
-minigrid_env_logs/*
-automaton_images/hp_opt/*
+*.json
 
-# flexfringe outputs
-Source.gv
-Source.gv.png
-dfafinal.dot
-dfainit_dfa.dot
-pre_dfadfa1.dot
+!*automaton_images/*.png
 
 # jupyter notebooks
 MANIFEST

@@ -1,0 +1,14 @@
+digraph  {
+nodesep=0.5;
+ratio=1;
+sep="+25,25";
+splines=True;
+q498 [fillcolor=royalblue1, final_probability="0.15306122448979592", is_accepting=False, label="q498 : 0.15", shape=box, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f851cfa5890>];
+q277 [fillcolor=gray80, final_probability="0.06293706293706294", is_accepting=False, label="q277 : 0.06", style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f8514d6b850>];
+q36 [fillcolor=lawngreen, final_probability="1.0", is_accepting=True, label="q36 : 1.00", peripheries=2, shape=doubleoctagon, style=filled, trans_distribution=<scipy.stats._distn_infrastructure.rv_sample object at 0x7f8514d97350>];
+q498 -> q498  [fontcolor=blue, key=0, label="empty_red_open: 0.66", probability="0.6632653061224489", symbol=empty_red_open];
+q498 -> q498  [fontcolor=blue, key=1, label="floor_green_open: 0.03", probability="0.030612244897959183", symbol=floor_green_open];
+q498 -> q277  [fontcolor=blue, key=0, label="floor_blue_open: 0.15", probability="0.15306122448979592", symbol=floor_blue_open];
+q277 -> q277  [fontcolor=blue, key=0, label="empty_red_open: 0.69", probability="0.6853146853146853", symbol=empty_red_open];
+q277 -> q36  [fontcolor=blue, key=0, label="floor_green_open: 0.25", probability="0.2517482517482518", symbol=floor_green_open];
+}
