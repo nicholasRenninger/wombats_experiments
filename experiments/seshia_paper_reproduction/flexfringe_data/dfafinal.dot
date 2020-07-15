@@ -4,10 +4,10 @@ digraph DFA {
 	0 [label="root" shape=box];
 		I -> 0;
 	0 [ label="#42"  ];
+		0 -> 0 [label="empty_red_open:16"  ];
 		0 -> 7 [label="floor_green_open:1"  ];
 		0 -> 11 [label="floor_blue_open:3"  ];
 		0 -> 13 [label="floor_yellow_open:1"  ];
-		0 -> 0 [label="empty_red_open:16"  ];
 	7 [ label="#1"  ];
 	11 [ label="#8"  ];
 		11 -> 12 [label="empty_red_open:1,floor_blue_open:3"  ];
