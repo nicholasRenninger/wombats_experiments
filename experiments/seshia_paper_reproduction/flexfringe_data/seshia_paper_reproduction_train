@@ -1,0 +1,6 @@
+5 4
+1 7 empty_red_open empty_red_open empty_red_open empty_red_open empty_red_open empty_red_open floor_green_open
+1 7 empty_red_open empty_red_open empty_red_open empty_red_open floor_yellow_open empty_red_open floor_green_open
+1 9 empty_red_open empty_red_open empty_red_open floor_blue_open empty_red_open empty_red_open floor_yellow_open empty_red_open floor_green_open
+1 9 empty_red_open empty_red_open floor_blue_open floor_blue_open empty_red_open floor_yellow_open floor_yellow_open empty_red_open floor_green_open
+1 10 empty_red_open floor_blue_open floor_blue_open floor_blue_open floor_blue_open empty_red_open floor_yellow_open floor_yellow_open empty_red_open floor_green_open
