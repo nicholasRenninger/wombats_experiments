@@ -1,18 +1,18 @@
 // produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
-// dfasat/flexfringe -h=kldistance -d=kl_data -m=2 -n=2 -x=0 -w=0 -a=0 -b=0 -f=0 -I=1 -t=1 -q=0 -y=0 -p=0.6 --output-dir=experiments/simple_running_example/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/simple_running_example/flexfringe_data/simple_running_example_train 
+// dfasat/flexfringe -h=kldistance -d=kl_data -m=2 -n=2 -x=0 -w=0 -a=0 -b=0 -f=0 -I=1 -t=1 -q=0 -y=0 -p=0.4 --output-dir=experiments/simple_running_example/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/simple_running_example/flexfringe_data/simple_running_example_train 
 digraph DFA {
 	0 [label="root" shape=box];
 		I -> 0;
-	0 [ label="#18"  ];
-		0 -> 1 [label="empty_red_open:8"  ];
+	0 [ label="#20"  ];
+		0 -> 1 [label="empty_red_open:9"  ];
 		0 -> 37 [label="floor_purple_open:1"  ];
-	1 [ label="#16"  style=dotted ];
-		1 -> 2 [label="empty_red_open:7"  ];
+	1 [ label="#18"  style=dotted ];
+		1 -> 2 [label="empty_red_open:8"  ];
 		1 -> 29 [label="floor_purple_open:1"  ];
-	2 [ label="#14"  style=dotted ];
+	2 [ label="#16"  style=dotted ];
 		2 -> 3 [label="empty_red_open:5"  ];
 		2 -> 13 [label="floor_purple_open:1"  ];
-		2 -> 58 [label="floor_green_open:1"  ];
+		2 -> 58 [label="floor_green_open:2"  ];
 	3 [ label="#10"  style=dotted ];
 		3 -> 4 [label="empty_red_open:4"  ];
 		3 -> 52 [label="floor_purple_open:1"  ];
@@ -87,12 +87,20 @@ digraph DFA {
 	18 [ label="#2"  style=dotted ];
 		18 -> 19 [label="floor_green_open:1"  ];
 	19 [ label="#1"  style=dotted ];
-	58 [ label="#2"  style=dotted ];
-		58 -> 59 [label="empty_red_open:1"  ];
-	59 [ label="#2"  style=dotted ];
-		59 -> 60 [label="empty_red_open:1"  ];
-	60 [ label="#2"  style=dotted ];
+	58 [ label="#4"  style=dotted ];
+		58 -> 59 [label="empty_red_open:2"  ];
+	59 [ label="#4"  style=dotted ];
+		59 -> 60 [label="empty_red_open:2"  ];
+	60 [ label="#4"  style=dotted ];
 		60 -> 61 [label="floor_purple_open:1"  ];
+		60 -> 62 [label="empty_red_open:1"  ];
+	62 [ label="#2"  style=dotted ];
+		62 -> 63 [label="empty_red_open:1"  ];
+	63 [ label="#2"  style=dotted ];
+		63 -> 64 [label="empty_red_open:1"  ];
+	64 [ label="#2"  style=dotted ];
+		64 -> 65 [label="floor_purple_open:1"  ];
+	65 [ label="#1"  style=dotted ];
 	61 [ label="#1"  style=dotted ];
 	29 [ label="#2"  style=dotted ];
 		29 -> 30 [label="empty_red_open:1"  ];
