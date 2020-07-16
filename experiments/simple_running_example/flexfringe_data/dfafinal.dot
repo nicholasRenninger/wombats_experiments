@@ -1,0 +1,18 @@
+// produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
+// dfasat/flexfringe -h=kldistance -d=kl_data -m=2 -n=2 -x=0 -w=0 -a=0 -b=0 -f=0 -I=1 -t=1 -q=0 -y=0 -p=0.6 --output-dir=experiments/simple_running_example/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/simple_running_example/flexfringe_data/simple_running_example_train 
+digraph DFA {
+	0 [label="root" shape=box];
+		I -> 0;
+	0 [ label="#80"  ];
+		0 -> 0 [label="empty_red_open:31"  ];
+		0 -> 37 [label="floor_purple_open:7"  ];
+		0 -> 46 [label="floor_green_open:2"  ];
+	37 [ label="#78"  ];
+		37 -> 37 [label="empty_red_open:32"  ];
+		37 -> 45 [label="floor_green_open:7"  ];
+	45 [ label="#7"  ];
+	46 [ label="#10"  ];
+		46 -> 46 [label="empty_red_open:3"  ];
+		46 -> 61 [label="floor_purple_open:2"  ];
+	61 [ label="#2"  ];
+}
