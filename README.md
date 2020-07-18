@@ -4,7 +4,7 @@ This repo houses the example usage notebooks (`experiments`) as well as the core
 
 ## To run the experiments
 
-* install `anaconda`
+* install [`anaconda`](https://www.anaconda.com/products/individual)
 
 * install `flexfringe` dependencies for you OS, listed [here](https://bitbucket.org/chrshmmmr/dfasat/src/master/).
 
