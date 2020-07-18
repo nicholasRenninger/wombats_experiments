@@ -1,4 +1,4 @@
-name: dfaInvestigations
+name: wombats
 channels:
   - defaults
   - conda-forge
