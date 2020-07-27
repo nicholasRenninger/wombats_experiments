@@ -1,5 +1,5 @@
 // produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
-// dfasat/flexfringe -h=kldistance -d=kl_data -n=1 -x=0 -w=0 -a=0 -b=1 -f=1 -I=0 -t=1 -l=0 -q=0 -y=0 -p=0.5 --output-dir=experiments/seshia_paper_reproduction/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/seshia_paper_reproduction/flexfringe_data/seshia_paper_reproduction_train 
+// dfasat/flexfringe -h=kldistance -d=kl_data -n=1 -x=0 -w=0 -b=1 -f=0 -I=0 -t=1 -l=0 -q=0 -y=0 -p=0.6 --output-dir=experiments/seshia_paper_reproduction/flexfringe_data/dfa /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/seshia_paper_reproduction/flexfringe_data/seshia_paper_reproduction_train 
 digraph DFA {
 	0 [label="root" shape=box];
 		I -> 0;
@@ -7,16 +7,16 @@ digraph DFA {
 		0 -> 1 [label="empty_red_open:5"  ];
 	1 [ label="#10"  style=dotted ];
 		1 -> 2 [label="empty_red_open:4"  ];
-		1 -> 24 [label="floor_blue_open:1"  ];
+		1 -> 24 [label="water_blue_open:1"  ];
 	2 [ label="#8"  style=dotted ];
 		2 -> 3 [label="empty_red_open:3"  ];
-		2 -> 17 [label="floor_blue_open:1"  ];
+		2 -> 17 [label="water_blue_open:1"  ];
 	3 [ label="#6"  style=dotted ];
 		3 -> 4 [label="empty_red_open:2"  ];
-		3 -> 11 [label="floor_blue_open:1"  ];
+		3 -> 11 [label="water_blue_open:1"  ];
 	4 [ label="#4"  style=dotted ];
 		4 -> 5 [label="empty_red_open:1"  ];
-		4 -> 8 [label="floor_yellow_open:1"  ];
+		4 -> 8 [label="carpet_yellow_open:1"  ];
 	5 [ label="#2"  style=dotted ];
 		5 -> 6 [label="empty_red_open:1"  ];
 	6 [ label="#2"  style=dotted ];
@@ -32,37 +32,37 @@ digraph DFA {
 	12 [ label="#2"  style=dotted ];
 		12 -> 13 [label="empty_red_open:1"  ];
 	13 [ label="#2"  style=dotted ];
-		13 -> 14 [label="floor_yellow_open:1"  ];
+		13 -> 14 [label="carpet_yellow_open:1"  ];
 	14 [ label="#2"  style=dotted ];
 		14 -> 15 [label="empty_red_open:1"  ];
 	15 [ label="#2"  style=dotted ];
 		15 -> 16 [label="floor_green_open:1"  ];
 	16 [ label="#1"  style=dotted ];
 	17 [ label="#2"  style=dotted ];
-		17 -> 18 [label="floor_blue_open:1"  ];
+		17 -> 18 [label="water_blue_open:1"  ];
 	18 [ label="#2"  style=dotted ];
 		18 -> 19 [label="empty_red_open:1"  ];
 	19 [ label="#2"  style=dotted ];
-		19 -> 20 [label="floor_yellow_open:1"  ];
+		19 -> 20 [label="carpet_yellow_open:1"  ];
 	20 [ label="#2"  style=dotted ];
-		20 -> 21 [label="floor_yellow_open:1"  ];
+		20 -> 21 [label="carpet_yellow_open:1"  ];
 	21 [ label="#2"  style=dotted ];
 		21 -> 22 [label="empty_red_open:1"  ];
 	22 [ label="#2"  style=dotted ];
 		22 -> 23 [label="floor_green_open:1"  ];
 	23 [ label="#1"  style=dotted ];
 	24 [ label="#2"  style=dotted ];
-		24 -> 25 [label="floor_blue_open:1"  ];
+		24 -> 25 [label="water_blue_open:1"  ];
 	25 [ label="#2"  style=dotted ];
-		25 -> 26 [label="floor_blue_open:1"  ];
+		25 -> 26 [label="water_blue_open:1"  ];
 	26 [ label="#2"  style=dotted ];
-		26 -> 27 [label="floor_blue_open:1"  ];
+		26 -> 27 [label="water_blue_open:1"  ];
 	27 [ label="#2"  style=dotted ];
 		27 -> 28 [label="empty_red_open:1"  ];
 	28 [ label="#2"  style=dotted ];
-		28 -> 29 [label="floor_yellow_open:1"  ];
+		28 -> 29 [label="carpet_yellow_open:1"  ];
 	29 [ label="#2"  style=dotted ];
-		29 -> 30 [label="floor_yellow_open:1"  ];
+		29 -> 30 [label="carpet_yellow_open:1"  ];
 	30 [ label="#2"  style=dotted ];
 		30 -> 31 [label="empty_red_open:1"  ];
 	31 [ label="#2"  style=dotted ];

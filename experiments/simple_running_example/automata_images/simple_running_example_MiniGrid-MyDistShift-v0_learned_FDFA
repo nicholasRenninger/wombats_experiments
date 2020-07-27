@@ -1,0 +1,18 @@
+digraph  {
+nodesep=0.5;
+ratio=1;
+sep="+25,25";
+splines=True;
+q0 [fillcolor=royalblue1, final_frequency=0, in_frequency=33, initial_frequency=10, isAccepting=None, label="10 : q0 : 0", out_frequency=43, shape=box, style=filled, trans_distribution=None];
+q37 [fillcolor=gray80, final_frequency=0, in_frequency=39, initial_frequency=0, isAccepting=None, label="0 : q37 : 0", out_frequency=39, style=filled, trans_distribution=None];
+q45 [fillcolor=gray80, final_frequency=7, in_frequency=7, initial_frequency=0, isAccepting=None, label="0 : q45 : 7", out_frequency=0, style=filled, trans_distribution=None];
+q46 [fillcolor=gray80, final_frequency=0, in_frequency=11, initial_frequency=0, isAccepting=None, label="0 : q46 : 0", out_frequency=11, style=filled, trans_distribution=None];
+q65 [fillcolor=gray80, final_frequency=3, in_frequency=3, initial_frequency=0, isAccepting=None, label="0 : q65 : 3", out_frequency=0, style=filled, trans_distribution=None];
+q0 -> q0  [fontcolor=blue, frequency=33, key=0, label="empty_red_open: 33", symbol=empty_red_open];
+q0 -> q37  [fontcolor=blue, frequency=7, key=0, label="floor_purple_open: 7", symbol=floor_purple_open];
+q0 -> q46  [fontcolor=blue, frequency=3, key=0, label="floor_green_open: 3", symbol=floor_green_open];
+q37 -> q37  [fontcolor=blue, frequency=32, key=0, label="empty_red_open: 32", symbol=empty_red_open];
+q37 -> q45  [fontcolor=blue, frequency=7, key=0, label="floor_green_open: 7", symbol=floor_green_open];
+q46 -> q46  [fontcolor=blue, frequency=8, key=0, label="empty_red_open: 8", symbol=empty_red_open];
+q46 -> q65  [fontcolor=blue, frequency=3, key=0, label="floor_purple_open: 3", symbol=floor_purple_open];
+}
