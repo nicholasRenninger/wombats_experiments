@@ -19,5 +19,7 @@ dependencies:
   - mkl
   - tqdm
   - ipywidgets
+  - pandas
+  - seaborn
   - pip:
     - git+https://github.com/maximecb/gym-minigrid.git
