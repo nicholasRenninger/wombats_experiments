@@ -1,0 +1,12 @@
+// produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
+// dfasat/flexfringe -h=kldistance -d=kl_data -o=experiments/flexfringe_pautomac_study/flexfringe_data/exp6_n5_x0_w1_a1_b1_f1_I0_J0_K0_t1_l0_p5_0dfa -n=5 -x=0 -w=1 -a=1 -b=1 -f=1 -I=0 -J=0 -K=0 -t=1 -l=0 -p=5.0 /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/flexfringe_pautomac_study/flexfringe_data/flexfringe_pautomac_study_train 
+digraph DFA {
+	0 [label="root" shape=box];
+		I -> 0;
+	0 [ label="#111864"  ];
+		0 -> 0 [label="2:5442"  ];
+		0 -> 1 [label="4:29824,5:3151,1:13286,0:4229"  ];
+	1 [ label="#497010"  ];
+		1 -> 0 [label="1:30490"  ];
+		1 -> 1 [label="4:96561,3:27147,5:22813,2:32297,0:29197"  ];
+}

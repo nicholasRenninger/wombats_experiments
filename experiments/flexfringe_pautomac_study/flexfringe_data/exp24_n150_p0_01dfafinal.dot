@@ -1,0 +1,23 @@
+// produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
+// dfasat/flexfringe -h=alergia -d=alergia_data -o=experiments/flexfringe_pautomac_study/flexfringe_data/exp24_n150_p0_01dfa -n=150 -p=0.01 /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/flexfringe_pautomac_study/flexfringe_data/flexfringe_pautomac_study_train 
+digraph DFA {
+	0 [label="root" shape=box];
+		I -> 0;
+	0 [ label="#58744"  ];
+		0 -> 5 [label="3:8833,1:17227"  ];
+		0 -> 6 [label="4:3171"  ];
+		0 -> 165 [label="0:141"  ];
+	5 [ label="#70712"  ];
+		5 -> 35 [label="1:14018"  ];
+		5 -> 6 [label="0:20856"  ];
+	6 [ label="#58812"  ];
+		6 -> 35 [label="0:15591"  ];
+		6 -> 165 [label="1:4297"  ];
+	165 [ label="#8876"  ];
+		165 -> 35 [label="2:4438"  ];
+	35 [ label="#70076"  ];
+		35 -> 0 [label="3:9372"  ];
+		35 -> 35 [label="1:991"  ];
+		35 -> 5 [label="0:7251,2:2527"  ];
+		35 -> 6 [label="4:14897"  ];
+}

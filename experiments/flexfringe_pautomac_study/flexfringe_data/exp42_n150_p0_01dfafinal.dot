@@ -1,0 +1,51 @@
+// produced with flexfringe from git commitd1cf04ada0831d0605a3651971ef9a02091d8823
+// dfasat/flexfringe -h=alergia -d=alergia_data -o=experiments/flexfringe_pautomac_study/flexfringe_data/exp42_n150_p0_01dfa -n=150 -p=0.01 /Users/nicholasrenninger/Google Drive/Grad School/specification learning/code/DPFA_DTS_product_experiment/dfasatInvestigations/experiments/flexfringe_pautomac_study/flexfringe_data/flexfringe_pautomac_study_train 
+digraph DFA {
+	0 [label="root" shape=box];
+		I -> 0;
+	0 [ label="#36173"  ];
+		0 -> 1 [label="6:10199"  ];
+		0 -> 2 [label="5:1478"  ];
+		0 -> 25 [label="2:2962"  ];
+		0 -> 119 [label="1:1534"  ];
+	1 [ label="#58810"  ];
+		1 -> 1 [label="2:4693"  ];
+		1 -> 2 [label="5:14465"  ];
+		1 -> 27 [label="4:5019"  ];
+	2 [ label="#49998"  ];
+		2 -> 5 [label="1:6191,2:8961"  ];
+		2 -> 119 [label="3:9847"  ];
+	5 [ label="#29251"  ];
+		5 -> 1 [label="6:2212,0:2446,8:2289"  ];
+		5 -> 5 [label="1:116"  ];
+		5 -> 25 [label="7:3633"  ];
+		5 -> 119 [label="4:913"  ];
+		5 -> 309 [label="2:1911"  ];
+	309 [ label="#3822"  ];
+		309 -> 5 [label="1:456"  ];
+		309 -> 119 [label="3:744"  ];
+		309 -> 475 [label="2:711"  ];
+	475 [ label="#1322"  ];
+		475 -> 1 [label="6:105,0:111,8:104"  ];
+		475 -> 2 [label="2:86"  ];
+		475 -> 5 [label="1:7"  ];
+		475 -> 25 [label="7:174"  ];
+		475 -> 119 [label="4:24"  ];
+	119 [ label="#39146"  ];
+		119 -> 1 [label="6:2858"  ];
+		119 -> 2 [label="5:6915"  ];
+		119 -> 25 [label="1:5821,3:1064"  ];
+		119 -> 27 [label="8:177"  ];
+		119 -> 119 [label="2:2738"  ];
+	27 [ label="#23252"  ];
+		27 -> 1 [label="5:452"  ];
+		27 -> 2 [label="3:832"  ];
+		27 -> 25 [label="8:1467"  ];
+		27 -> 27 [label="2:6430"  ];
+		27 -> 119 [label="0:2445"  ];
+	25 [ label="#32232"  ];
+		25 -> 1 [label="6:9164"  ];
+		25 -> 2 [label="5:1223"  ];
+		25 -> 25 [label="2:2698"  ];
+		25 -> 119 [label="1:1328"  ];
+}
